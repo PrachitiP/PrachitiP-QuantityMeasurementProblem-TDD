@@ -3,6 +3,7 @@ from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Inch
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import QuantityMeasurement
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Lengths
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Volumes
+from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Weights
 
 import pytest
 
@@ -141,47 +142,74 @@ def test_givenOneYardAndNinetyCm_WhenCompared_ShouldReturnTrue():
     assert yard.compare(cm)
 
 
-#UC4-TC1- Compare Two Inch and Two Inch and Should Return
+#UC4-TC1- Add Two Inch and Two Inch and Should Return Sum
 def test_givenTwoInchAndTwoInch_WhenAdded_ShouldReturnSumInInches():
     first_inch = QuantityMeasurement(Lengths.INCH, 2.0)
     second_inch = QuantityMeasurement(Lengths.INCH, 2.0)
     assert first_inch.add(second_inch) == 4.0
 
-#TC2- Compare One Feet and Two Inch and Should Return
+#TC2- Add One Feet and Two Inch and Should Return Sum
 def test_givenOneftAndTwoInch_WhenAdded_ShouldReturnSumInInches():
     feet = QuantityMeasurement(Lengths.FEET, 1.0)
     inch = QuantityMeasurement(Lengths.INCH, 2.0)
     assert inch.add(feet) == 14.0
 
-#TC3- Compare One Feet and One Feet and Should Return
+#TC3- Add One Feet and One Feet and Should Return Sum
 def test_givenOneftAndOneFt_WhenAdded_ShouldReturnSumInInches():
     first_feet = QuantityMeasurement(Lengths.FEET, 1.0)
     second_feet = QuantityMeasurement(Lengths.FEET, 1.0)
     assert first_feet.add(second_feet) == 24.0
 
-#TC4- Compare Two Inch and Two Point Five Centimeter and Should Return
+#TC4- Add Two Inch and Two Point Five Centimeter and Should Return Sum
 def test_givenTwoInchAndTwoPointFiveCm_WhenAdded_ShouldReturnSumInInches():
     inch = QuantityMeasurement(Lengths.INCH, 2.0)
     cm = QuantityMeasurement(Lengths.CENTIMETER, 2.5)
     assert inch.add(cm) == 3.0
 
-#UC5
+#TC5- Compare One Litre and One Litre and Should Return True
 def test_givenOneLitreAndOneLitre_WhenCompared_ShouldReturnTrue():
     first_litre = QuantityMeasurement(Volumes.LITRE, 1.0)
     second_litre = QuantityMeasurement(Volumes.LITRE, 1.0)
     assert first_litre == second_litre
 
-
+#TC1- Compare One Gallon and Three Point Seven Eight Litres and Should Return True
 def test_givenOneGallonAndThreePointSeven_WhenCompared_ShouldReturnTrue():
     gallon = QuantityMeasurement(Volumes.GALLON, 1.0)
     litre = QuantityMeasurement(Volumes.LITRE, 3.78)
     assert gallon.compareVolume(litre)
 
-
+#TC2- Compare One Litre and Thousand ML and Should Return True
 def test_givenOneLitreAndThousandMl_WhenCompared_ShouldReturnTrue():
     litre = QuantityMeasurement(Volumes.LITRE, 1.0)
     ml = QuantityMeasurement(Volumes.ML, 1000.0)
     assert litre.compareVolume(ml)
+
+#UC7- Compare One KG and One KG and Should Return True
+def test_givenOneKgAndOneKg_WhenCompared_ShouldRreturnTrue():
+    first_kg = QuantityMeasurement(Weights.KG, 1.0)
+    second_kg = QuantityMeasurement(Weights.KG, 1.0)
+    assert first_kg.compareWeight(second_kg)
+
+#TC1- Compare One KG and Thousand Grams and Should Return True
+def test_givenOneKgAndThousandGrams_WhenCompared_ShouldRreturnTrue():
+    kg = QuantityMeasurement(Weights.KG, 1.0)
+    grams = QuantityMeasurement(Weights.GRAMS, 1000.0)
+    assert kg.compareWeight(grams)
+
+#TC2- Compare One Tonne and Thousand KG and Should Return True
+def test_givenOneTonneAndThousandKg_WhenCompared_ShouldRreturnTrue():
+    tonne = QuantityMeasurement(Weights.TONNE, 1.0)
+    kg = QuantityMeasurement(Weights.KG, 1000.0)
+    assert kg.compareWeight(tonne)
+
+#TC3- Add One Tonne and Thousand Gram and Return Sum
+def test_given_oneTonneAndThousandGram_WhenAdded_ShouldReturnSumInKgs():
+    tonne = QuantityMeasurement(Weights.TONNE, 1.0)
+    kg = QuantityMeasurement(Weights.GRAMS, 1000.0)
+    assert kg.addWeight(tonne) == 1001.0
+
+
+
 
 
 
