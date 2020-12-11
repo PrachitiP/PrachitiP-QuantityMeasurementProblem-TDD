@@ -44,6 +44,18 @@ class QuantityMeasurement:
                 return True
         return False
 
+    def compareWeight(self, other):
+        if isinstance(self.unit, Weights) and isinstance(other.unit, Weights):
+            if Weights.convert(self.unit, self.value) == Weights.convert(other.unit, other.value):
+                return True
+        return False
+
+    def compareTemp(self, other):
+        if isinstance(self.unit, Tempretures) and isinstance(other.unit, Tempretures):
+            if Tempretures.convert(self.unit, self.value) == Tempretures.convert(other.unit, other.value):
+                return True
+        return False
+
     def add(self, other):
         if isinstance(self.unit, Lengths) and isinstance(other.unit, Lengths):
             return Lengths.convert(self.unit, self.value) + Lengths.convert(other.unit, other.value)
@@ -52,6 +64,11 @@ class QuantityMeasurement:
     def addVolume(self, other):
         if isinstance(self.unit, Volumes) and isinstance(other.unit, Volumes):
             return Volumes.convert(self.unit, self.value) + Volumes.convert(other.unit, other.value)
+        return 0
+
+    def addWeight(self, other):
+        if isinstance(self.unit, Weights) and isinstance(other.unit, Weights):
+            return Weights.convert(self.unit, self.value) + Weights.convert(other.unit, other.value)
         return 0
 
 
@@ -88,3 +105,19 @@ class Weights(enum.Enum):
 
     def convert(self, value):
         return self.unit * value
+
+class Tempretures(enum.Enum):
+    CELCIUS = 100
+    FAHRENHEIT = 212
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    def convert(self, value):
+        if self.unit == self.value:
+            if self.value == Tempretures.CELCIUS:
+                return (value * 9 / 5) + 32
+            elif self.value == Tempretures.FAHRENHEIT:
+                return value * self.unit / 212
+        return False
+
