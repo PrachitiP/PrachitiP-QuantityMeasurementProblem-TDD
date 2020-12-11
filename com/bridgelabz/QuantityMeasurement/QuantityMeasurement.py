@@ -32,6 +32,13 @@ class QuantityMeasurement:
             if Lengths.convert(self.unit, self.value) == Lengths.convert(other.unit, other.value):
                 return True
         return False
+    
+    def add(self, other):
+    if isinstance(self.unit, Lengths) and isinstance(other.unit, Lengths):
+        return Lengths.convert(self.unit, self.value) + Lengths.convert(other.unit, other.value)
+    return 0
+
+
 
 
 
