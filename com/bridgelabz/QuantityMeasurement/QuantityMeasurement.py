@@ -27,12 +27,28 @@ class QuantityMeasurement:
         self.unit = unit
         self.value = value
 
+    def __eq__(self, other):
+        if isinstance(other, QuantityMeasurement):
+            return self.value == other.value
+        return False
+
     def compare(self, other):
         if isinstance(self.unit, Lengths) and isinstance(other.unit, Lengths):
             if Lengths.convert(self.unit, self.value) == Lengths.convert(other.unit, other.value):
                 return True
         return False
 
+    def compareVolume(self, other):
+        if isinstance(self.unit, Volumes) and isinstance(other.unit, Volumes):
+            if Volumes.convert(self.unit, self.value) == Volumes.convert(other.unit, other.value):
+                return True
+        return False
+
+
+    def add(self, other):
+        if isinstance(self.unit, Lengths) and isinstance(other.unit, Lengths):
+            return Lengths.convert(self.unit, self.value) + Lengths.convert(other.unit, other.value)
+        return 0
 
 
 class Lengths(enum.Enum):
@@ -40,6 +56,17 @@ class Lengths(enum.Enum):
     INCH = 1.0
     YARD = 36.0
     CENTIMETER = 0.4
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    def convert(self, value):
+        return self.unit * value
+
+class Volumes(enum.Enum):
+    LITRE = 1.0
+    GALLON = 3.78
+    ML = 0.001
 
     def __init__(self, unit):
         self.unit = unit
