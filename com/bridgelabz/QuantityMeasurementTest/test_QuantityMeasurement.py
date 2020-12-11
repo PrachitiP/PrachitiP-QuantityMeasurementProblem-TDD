@@ -4,6 +4,7 @@ from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import QuantityMeasu
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Lengths
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Volumes
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Weights
+from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Tempretures
 
 import pytest
 
@@ -195,3 +196,51 @@ def test_givenOneLitreAndThousandMl_WhenAdded_ShouldReturnSumInLitres():
     litre = QuantityMeasurement(Volumes.LITRE, 1.0)
     ml = QuantityMeasurement(Volumes.ML, 1000.0)
     assert litre.addVolume(ml) == 2.0
+
+#UC7- Compare One KG and One KG and Should Return True
+def test_givenOneKgAndOneKg_WhenCompared_ShouldRreturnTrue():
+    first_kg = QuantityMeasurement(Weights.KG, 1.0)
+    second_kg = QuantityMeasurement(Weights.KG, 1.0)
+    assert first_kg.compareWeight(second_kg)
+
+#TC1- Compare One KG and Thousand Grams and Should Return True
+def test_givenOneKgAndThousandGrams_WhenCompared_ShouldRreturnTrue():
+    kg = QuantityMeasurement(Weights.KG, 1.0)
+    grams = QuantityMeasurement(Weights.GRAMS, 1000.0)
+    assert kg.compareWeight(grams)
+
+#TC2- Compare One Tonne and Thousand KG and Should Return True
+def test_givenOneTonneAndThousandKg_WhenCompared_ShouldRreturnTrue():
+    tonne = QuantityMeasurement(Weights.TONNE, 1.0)
+    kg = QuantityMeasurement(Weights.KG, 1000.0)
+    assert kg.compareWeight(tonne)
+
+#TC3- Add One Tonne and Thousand Gram and Return Sum
+def test_given_oneTonneAndThousandGram_WhenAdded_ShouldReturnSumInKgs():
+    tonne = QuantityMeasurement(Weights.TONNE, 1.0)
+    kg = QuantityMeasurement(Weights.GRAMS, 1000.0)
+    assert kg.addWeight(tonne) == 1001.0
+
+#UC8- Compare One Celcius and One Celcius and Should Return True
+def test_givenOneCelciusAndOneCelcius_WhenCompared_ShouldReturnTrue():
+    first_celsius = QuantityMeasurement(Tempretures.CELCIUS, 1.0)
+    second_celcius = QuantityMeasurement(Tempretures.CELCIUS, 1.0)
+    assert first_celsius.compareTemp(second_celcius)
+
+#UC8- Compare One Farenheit and One Farenheit and Should Return True
+def test_givenOneFarenheitAndOneFarenheit_WhenCompared_ShouldReturnTrue():
+    first_Farenheit = QuantityMeasurement(Tempretures.FAHRENHEIT, 1.0)
+    second_Farenheit = QuantityMeasurement(Tempretures.FAHRENHEIT, 1.0)
+    assert first_Farenheit.compareTemp(second_Farenheit)
+
+#UC8- Compare Hundered Celcius and TwoHunderedAndTwelve Farenheit and Should Return True
+def test_givenHunderedCelciusAndTwoHunderedAndTwelveFarenheit_WhenCompared_ShouldReturnTrue():
+    celsius = QuantityMeasurement(Tempretures.CELCIUS, 100.0)
+    farenheit = QuantityMeasurement(Tempretures.FAHRENHEIT, 212)
+    assert celsius.compareTemp(farenheit)
+
+#UC8- Compare TwoHunderedAndTwelve Farenheit and Hundered Celcius and Should Return True
+def test_givenTwoHunderedAndTwelveFarenheitAndHunderedCelcius_WhenCompared_ShouldReturnTrue():
+    farenheit = QuantityMeasurement(Tempretures.FAHRENHEIT, 212)
+    celcius = QuantityMeasurement(Tempretures.CELCIUS, 100)
+    assert celcius.compareTemp(farenheit)
