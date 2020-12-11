@@ -139,3 +139,29 @@ def test_givenOneYardAndNinetyCm_WhenCompared_ShouldReturnTrue():
     cm = QuantityMeasurement(Lengths.CM, 90.0)
     assert yard.compare(cm)
 
+
+#UC4-TC1- Compare Two Inch and Two Inch and Should Return
+def test_givenTwoInchAndTwoInch_WhenAdded_ShouldReturnSumInInches():
+    first_inch = QuantityMeasurement(Lengths.INCH, 2.0)
+    second_inch = QuantityMeasurement(Lengths.INCH, 2.0)
+    assert first_inch.add(second_inch) == 4.0
+
+#TC2- Compare One Feet and Two Inch and Should Return
+def test_givenOneftAndTwoInch_WhenAdded_ShouldReturnSumInInches():
+    feet = QuantityMeasurement(Lengths.FEET, 1.0)
+    inch = QuantityMeasurement(Lengths.INCH, 2.0)
+    assert inch.add(feet) == 14.0
+
+#TC3- Compare One Feet and One Feet and Should Return
+def test_givenOneftAndOneFt_WhenAdded_ShouldReturnSumInInches():
+    first_feet = QuantityMeasurement(Lengths.FEET, 1.0)
+    second_feet = QuantityMeasurement(Lengths.FEET, 1.0)
+    assert first_feet.add(second_feet) == 24.0
+
+#TC4- Compare Two Inch and Two Point Five Centimeter and Should Return
+def test_givenTwoInchAndTwoPointFiveCm_WhenAdded_ShouldReturnSumInInches():
+    inch = QuantityMeasurement(Lengths.INCH, 2.0)
+    cm = QuantityMeasurement(Lengths.CENTIMETER, 2.5)
+    assert inch.add(cm) == 3.0
+
+
