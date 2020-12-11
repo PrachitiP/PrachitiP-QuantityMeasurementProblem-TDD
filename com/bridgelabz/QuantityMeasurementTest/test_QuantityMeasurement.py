@@ -1,5 +1,7 @@
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Feet
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Inch
+from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import QuantityMeasurement
+from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Lengths
 
 import pytest
 
@@ -71,9 +73,40 @@ def test_givenTwelveInchAndOneFt_WhenCopared_ShouldReturnTrue():
     feet = Feet(1.0)
     assert inch == feet
 
+#UC2-Compare Three Feet And One Yard and Return True
+def test_givenThreeFtAndOneYard_WhenCompared_ShouldReturnTrue():
+    feet = QuantityMeasurement(Lengths.FEET, 3.0)
+    yard = QuantityMeasurement(Lengths.YARD, 1.0)
+    assert feet.compare(yard)
 
+#UC2-TC1- Compare One Feet and One Feet and Return True
+def test_givenOneFtAndOneYard_WhenCompared_ShouldReturnFalse():
+    feet = QuantityMeasurement(Lengths.FEET, 1.0)
+    yard = QuantityMeasurement(Lengths.YARD, 1.0)
+    assert feet.compare(yard) == False
 
+#UC2-TC2- Compare One Inch and One Yard and Return False
+def test_givenOneInchAndOneYard_WhenCompared_ShouldReturnFalse():
+    inch = QuantityMeasurement(Lengths.INCH, 1.0)
+    yard = QuantityMeasurement(Lengths.YARD, 1.0)
+    assert inch.compare(yard) == False
 
+#UC2-TC3- Compare One Yard and Thirty Six Inch and Return True
+def test_givenOneYardAndThirtySixInch_WhenCompared_ShouldReturnTrue():
+    yard = QuantityMeasurement(Lengths.YARD, 1.0)
+    inch = QuantityMeasurement(Lengths.INCH, 36.0)
+    assert yard.compare(inch)
 
+#UC2-TC4- Compare Thirty Six Inch and One Yard and Return True
+def test_givenThirtySixInchAndOneYard_WhenCompared_ShouldReturnTrue():
+    inch = QuantityMeasurement(Lengths.INCH, 36.0)
+    yard = QuantityMeasurement(Lengths.YARD, 1.0)
+    assert inch.compare(yard)
+
+#UC2-TC5- Compare One Yard and Three Feet and Return True
+def test_givenOneYardAndThreeFt_WhenCompared_ShouldReturnTrue():
+    yard = QuantityMeasurement(Lengths.YARD, 1.0)
+    feet = QuantityMeasurement(Lengths.FEET, 3.0)
+    assert yard.compare(feet)
 
 
