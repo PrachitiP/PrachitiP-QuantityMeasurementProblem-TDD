@@ -2,6 +2,7 @@ from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Feet
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Inch
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import QuantityMeasurement
 from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Lengths
+from com.bridgelabz.QuantityMeasurement.QuantityMeasurement import Volumes
 
 import pytest
 
@@ -130,13 +131,13 @@ def test_givenOneInchAndOneCm_WhenCompared_ShouldReturnFalse():
 #Compare One Feet and Thirty Centimeter and Return True
 def test_givenOneFeetAndThirtyCm_WhenCompared_ShouldReturnTrue():
     feet = QuantityMeasurement(Lengths.FEET, 1.0)
-    cm = QuantityMeasurement(Lengths.CM, 30.0)
+    cm = QuantityMeasurement(Lengths.CENTIMETER, 30.0)
     assert feet.compare(cm)
 
 #Compare One Yard and Ninety Centimeter and Return True
 def test_givenOneYardAndNinetyCm_WhenCompared_ShouldReturnTrue():
     yard = QuantityMeasurement(Lengths.YARD, 1.0)
-    cm = QuantityMeasurement(Lengths.CM, 90.0)
+    cm = QuantityMeasurement(Lengths.CENTIMETER, 90.0)
     assert yard.compare(cm)
 
 
@@ -163,5 +164,24 @@ def test_givenTwoInchAndTwoPointFiveCm_WhenAdded_ShouldReturnSumInInches():
     inch = QuantityMeasurement(Lengths.INCH, 2.0)
     cm = QuantityMeasurement(Lengths.CENTIMETER, 2.5)
     assert inch.add(cm) == 3.0
+
+#UC5
+def test_givenOneLitreAndOneLitre_WhenCompared_ShouldReturnTrue():
+    first_litre = QuantityMeasurement(Volumes.LITRE, 1.0)
+    second_litre = QuantityMeasurement(Volumes.LITRE, 1.0)
+    assert first_litre == second_litre
+
+
+def test_givenOneGallonAndThreePointSeven_WhenCompared_ShouldReturnTrue():
+    gallon = QuantityMeasurement(Volumes.GALLON, 1.0)
+    litre = QuantityMeasurement(Volumes.LITRE, 3.78)
+    assert gallon.compareVolume(litre)
+
+
+def test_givenOneLitreAndThousandMl_WhenCompared_ShouldReturnTrue():
+    litre = QuantityMeasurement(Volumes.LITRE, 1.0)
+    ml = QuantityMeasurement(Volumes.ML, 1000.0)
+    assert litre.compareVolume(ml)
+
 
 
