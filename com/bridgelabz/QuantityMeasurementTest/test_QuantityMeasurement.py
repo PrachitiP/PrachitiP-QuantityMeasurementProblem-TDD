@@ -109,4 +109,33 @@ def test_givenOneYardAndThreeFt_WhenCompared_ShouldReturnTrue():
     feet = QuantityMeasurement(Lengths.FEET, 3.0)
     assert yard.compare(feet)
 
+#UC3- Compare One Centimeter and One Centimeter and Return True
+def test_givenOneCmAndOneCm_WhenCompared_ShouldReturnTrue():
+    first_cm = QuantityMeasurement(Lengths.CENTIMETER, 1.0)
+    second_cm = QuantityMeasurement(Lengths.CENTIMETER, 1.0)
+    assert first_cm.compare(second_cm)
+
+#Compare Two Inch and Five Centimeter and Return True
+def test_givenTwoInchAndFiveCm_WhenCompared_ShouldReturnTrue():
+    inch = QuantityMeasurement(Lengths.INCH, 2.0)
+    cm = QuantityMeasurement(Lengths.CENTIMETER, 5.0)
+    assert inch.compare(cm)
+
+#Compare One Inch and One Centimeter and Return True
+def test_givenOneInchAndOneCm_WhenCompared_ShouldReturnFalse():
+    inch = QuantityMeasurement(Lengths.INCH, 1.0)
+    cm = QuantityMeasurement(Lengths.CENTIMETER, 1.0)
+    assert not inch.compare(cm)
+
+#Compare One Feet and Thirty Centimeter and Return True
+def test_givenOneFeetAndThirtyCm_WhenCompared_ShouldReturnTrue():
+    feet = QuantityMeasurement(Lengths.FEET, 1.0)
+    cm = QuantityMeasurement(Lengths.CM, 30.0)
+    assert feet.compare(cm)
+
+#Compare One Yard and Ninety Centimeter and Return True
+def test_givenOneYardAndNinetyCm_WhenCompared_ShouldReturnTrue():
+    yard = QuantityMeasurement(Lengths.YARD, 1.0)
+    cm = QuantityMeasurement(Lengths.CM, 90.0)
+    assert yard.compare(cm)
 
