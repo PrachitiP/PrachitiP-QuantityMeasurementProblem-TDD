@@ -44,21 +44,16 @@ class QuantityMeasurement:
                 return True
         return False
 
-    def compareWeight(self, other):
-        if isinstance(self.unit, Weights) and isinstance(other.unit, Weights):
-            if Weights.convert(self.unit, self.value) == Weights.convert(other.unit, other.value):
-                return True
-        return False
-
     def add(self, other):
         if isinstance(self.unit, Lengths) and isinstance(other.unit, Lengths):
             return Lengths.convert(self.unit, self.value) + Lengths.convert(other.unit, other.value)
         return 0
 
-    def addWeight(self, other):
-        if isinstance(self.unit, Weights) and isinstance(other.unit, Weights):
-            return Weights.convert(self.unit, self.value) + Weights.convert(other.unit, other.value)
+    def addVolume(self, other):
+        if isinstance(self.unit, Volumes) and isinstance(other.unit, Volumes):
+            return Volumes.convert(self.unit, self.value) + Volumes.convert(other.unit, other.value)
         return 0
+
 
 class Lengths(enum.Enum):
     FEET = 12.0
