@@ -44,12 +44,21 @@ class QuantityMeasurement:
                 return True
         return False
 
+    def compareWeight(self, other):
+        if isinstance(self.unit, Weights) and isinstance(other.unit, Weights):
+            if Weights.convert(self.unit, self.value) == Weights.convert(other.unit, other.value):
+                return True
+        return False
 
     def add(self, other):
         if isinstance(self.unit, Lengths) and isinstance(other.unit, Lengths):
             return Lengths.convert(self.unit, self.value) + Lengths.convert(other.unit, other.value)
         return 0
 
+    def addWeight(self, other):
+        if isinstance(self.unit, Weights) and isinstance(other.unit, Weights):
+            return Weights.convert(self.unit, self.value) + Weights.convert(other.unit, other.value)
+        return 0
 
 class Lengths(enum.Enum):
     FEET = 12.0
@@ -67,6 +76,17 @@ class Volumes(enum.Enum):
     LITRE = 1.0
     GALLON = 3.78
     ML = 0.001
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    def convert(self, value):
+        return self.unit * value
+
+class Weights(enum.Enum):
+    KG = 1.0
+    GRAMS = 0.001
+    TONNE = 1000
 
     def __init__(self, unit):
         self.unit = unit
