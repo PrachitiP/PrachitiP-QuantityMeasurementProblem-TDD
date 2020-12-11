@@ -184,32 +184,14 @@ def test_givenOneLitreAndThousandMl_WhenCompared_ShouldReturnTrue():
     ml = QuantityMeasurement(Volumes.ML, 1000.0)
     assert litre.compareVolume(ml)
 
-#UC7- Compare One KG and One KG and Should Return True
-def test_givenOneKgAndOneKg_WhenCompared_ShouldRreturnTrue():
-    first_kg = QuantityMeasurement(Weights.KG, 1.0)
-    second_kg = QuantityMeasurement(Weights.KG, 1.0)
-    assert first_kg.compareWeight(second_kg)
+#UC6- Add One Gallon and Three POint Seven Litre and Should Return Sum
+def test_givenOneGallaonAndThreePointSevenLitre_WhenAdded_ShouldReturnSumInLitres():
+    litre = QuantityMeasurement(Volumes.LITRE, 3.78)
+    gallon = QuantityMeasurement(Volumes.GALLON, 1.0)
+    assert litre.addVolume(gallon) == 7.56
 
-#TC1- Compare One KG and Thousand Grams and Should Return True
-def test_givenOneKgAndThousandGrams_WhenCompared_ShouldRreturnTrue():
-    kg = QuantityMeasurement(Weights.KG, 1.0)
-    grams = QuantityMeasurement(Weights.GRAMS, 1000.0)
-    assert kg.compareWeight(grams)
-
-#TC2- Compare One Tonne and Thousand KG and Should Return True
-def test_givenOneTonneAndThousandKg_WhenCompared_ShouldRreturnTrue():
-    tonne = QuantityMeasurement(Weights.TONNE, 1.0)
-    kg = QuantityMeasurement(Weights.KG, 1000.0)
-    assert kg.compareWeight(tonne)
-
-#TC3- Add One Tonne and Thousand Gram and Return Sum
-def test_given_oneTonneAndThousandGram_WhenAdded_ShouldReturnSumInKgs():
-    tonne = QuantityMeasurement(Weights.TONNE, 1.0)
-    kg = QuantityMeasurement(Weights.GRAMS, 1000.0)
-    assert kg.addWeight(tonne) == 1001.0
-
-
-
-
-
-
+#UC6- Add One Litre and Thousand ML and Should Return Sum
+def test_givenOneLitreAndThousandMl_WhenAdded_ShouldReturnSumInLitres():
+    litre = QuantityMeasurement(Volumes.LITRE, 1.0)
+    ml = QuantityMeasurement(Volumes.ML, 1000.0)
+    assert litre.addVolume(ml) == 2.0
